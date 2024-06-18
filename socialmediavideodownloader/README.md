@@ -1,3 +1,5 @@
+![image](https://github.com/imvickykumar999/Video-Downloader/assets/50515418/e29f8742-5524-4a86-b819-fc52695c9205)
+
 ### Installing `ffmpeg`
 
 `ffmpeg` is a widely-used tool for processing video and audio files. The installation process depends on your operating system. Here are the steps for installing `ffmpeg` on Windows, macOS, and Ubuntu.
