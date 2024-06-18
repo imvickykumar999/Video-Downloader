@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Available Formats{% endblock %}
+
+{% block extra_styles %}
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    .card {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+    }
+    .form-group {
+        margin-bottom: 15px;
+        text-align: left;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-top: 10px;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <h2>Select Format</h2>
+        <form action="{% url 'youtubedownloader:download' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="format_id">Available Formats:</label>
+                <select id="format_id" name="format_id" required>
+                    {% for format in formats %}
+                        <option value="{{ format.id }}">{{ format.description }}</option>
+                    {% endfor %}
+                </select>
+                <input type="hidden" name="url" value="{{ url }}">
+            </div>
+            <button type="submit">Download</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

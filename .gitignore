@@ -1,0 +1,4 @@
+
+socialmediavideodownloader/downloaded_videos
+*db.sqlite3
+*.pyc
