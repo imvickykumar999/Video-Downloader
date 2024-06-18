@@ -7,3 +7,62 @@
 >![image](https://github.com/imvickykumar999/Video-Downloader/assets/50515418/79bb85ec-8f71-41ca-843b-4dd556dc229d)
 >![image](https://github.com/imvickykumar999/Video-Downloader/assets/50515418/65359794-6aec-49c0-9a4e-f7ddc94a710b)
 >![image](https://github.com/imvickykumar999/Video-Downloader/assets/50515418/ebfb9d2a-2877-4533-8e4e-370f51a5dc4d)
+
+To configure `ALLOWED_HOSTS` correctly, you should include the following:
+
+1. The local IP address (`192.168.0.18`).
+2. `localhost` and `127.0.0.1` for local development.
+3. The hostname if you plan to access the server using a hostname.
+4. Optionally, `0.0.0.0` to allow all hosts (use with caution in development).
+
+### Example Configuration
+
+Here is an example of a comprehensive `ALLOWED_HOSTS` configuration for development:
+
+**settings.py**:
+
+```python
+ALLOWED_HOSTS = [
+    '192.168.0.18',  # Local network IP
+    'localhost',     # Localhost access
+    '127.0.0.1',     # Loopback address
+    '0.0.0.0',       # Allows access from any host (useful for development, but use with caution)
+]
+```
+
+### Running the Server
+
+Ensure you run the server with the command:
+
+```sh
+python3 manage.py runserver 0.0.0.0:8000
+```
+
+### Accessing the Server
+
+With the above configuration, you should be able to access the Django application using any of the following URLs:
+
+1. From the same machine:
+   - `http://localhost:8000`
+   - `http://127.0.0.1:8000`
+
+2. From other devices on the same local network:
+   - `http://192.168.0.18:8000`
+
+3. Optionally, if you have configured a hostname or a domain name, ensure it resolves to the correct IP address and add it to `ALLOWED_HOSTS`.
+
+### Example
+
+Assuming your local network IP is `192.168.0.18` and you want to access the Django server from another device on the same network, you can:
+
+1. Run the server with:
+   ```sh
+   python3 manage.py runserver 0.0.0.0:8000
+   ```
+
+2. Open a web browser on another device and navigate to:
+   ```sh
+   http://192.168.0.18:8000
+   ```
+
+By following these steps, you should be able to access your Django application from different hosts in your development environment.
