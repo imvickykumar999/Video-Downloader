@@ -1,6 +1,6 @@
 ># `Social Media Video Downloader`
 >
->![image](https://github.com/imvickykumar999/Video-Downloader/assets/50515418/251d4a04-aced-4652-8fde-41e4db0aa4e5)
+>![image](https://github.com/imvickykumar999/Video-Downloader/assets/50515418/274bb4ff-e3ad-4bf6-aa36-69dbf8b243b8)
 >![image](https://github.com/imvickykumar999/Video-Downloader/assets/50515418/18431549-25d1-4c88-8762-4a0b2827c0d2)
 >![image](https://github.com/imvickykumar999/Video-Downloader/assets/50515418/62b2ce53-7b13-4e17-b240-113ce2e52896)
 >![image](https://github.com/imvickykumar999/Video-Downloader/assets/50515418/9940d5dc-a58e-4f3a-97e3-3dc9811d2f3a)
