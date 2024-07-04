@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Select Format{% endblock %}
+
+{% block extra_styles %}
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    .card {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 600px;
+        text-align: center;
+        border: 2px solid #ff6f91; /* Pink border */
+    }
+    .input-group {
+        text-align: left;
+        margin-bottom: 15px;
+    }
+    .input-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #ff6f91; /* Pink label color */
+    }
+    select, button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    button {
+        background-color: #ff6f91; /* Pink button */
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    button:hover {
+        background-color: #e65577; /* Darker pink */
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <h2>Select Video Format</h2>
+        <form action="{% url 'instadownloader:download_view' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="url" value="{{ url }}">
+            <div class="input-group">
+                <label for="format_id">Available Formats:</label>
+                <select id="format_id" name="format_id" required>
+                    {% for format in formats %}
+                        <option value="{{ format.id }}">{{ format.description }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit">Download</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

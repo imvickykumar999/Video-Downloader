@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Facebook Video Downloader{% endblock %}
+
+{% block extra_styles %}
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    .card {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 600px;
+        text-align: center;
+        border: 2px solid #ff6f91; /* Pink border */
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #ff6f91; /* Pink button */
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    button:hover {
+        background-color: #e85a75; /* Darker pink on hover */
+        transform: scale(1.05);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <h2>Facebook Video Downloader</h2>
+        <form action="{% url 'facebookdownloader:index' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="url">Facebook Video URL:</label>
+                <input type="text" id="url" name="url" placeholder="Enter Facebook Video URL" required>
+            </div>
+            <button type="submit">List Formats</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

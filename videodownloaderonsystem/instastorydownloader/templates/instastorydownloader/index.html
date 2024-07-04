@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Instagram Story Downloader{% endblock %}
+
+{% block extra_styles %}
+<style>
+    body {
+        background-color: #f9f9f9; /* Light grey background */
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    .card {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 600px;
+        text-align: center;
+        border: 2px solid #ff6f91; /* Add border color to match the theme */
+    }
+    h2 {
+        color: #ff6f91; /* Match the heading color */
+    }
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    input[type="url"] {
+        width: 100%;
+        max-width: 400px;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #ff6f91; /* Match the button color */
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    button:hover {
+        background-color: #ff5078; /* Darker shade for hover */
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <h2>Instagram Story Downloader</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <button type="submit">Download</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

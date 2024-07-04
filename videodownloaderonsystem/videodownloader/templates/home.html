@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Video Downloader{% endblock %}
+
+{% block extra_styles %}
+<style>
+    .main-container {
+        width: 100%;
+        max-width: 1000px;
+        margin: auto;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        box-sizing: border-box;
+    }
+    .card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 100%;
+        max-width: 800px;
+        text-align: center;
+        box-sizing: border-box;
+        border: 2px solid #ff6f91; /* Pink border */
+    }
+    .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+    }
+    .buttons a {
+        padding: 10px 20px;
+        background-color: #ff6f91;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        box-sizing: border-box;
+        flex: 1 1 45%; /* Adjust this to change the width of the buttons */
+        max-width: 45%;
+    }
+    .buttons a:hover {
+        background-color: #ff3b7b;
+    }
+    .video-list {
+        margin-top: 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .video-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+    }
+    .video-container video {
+        width: 100%;
+        height: auto;
+        max-width: 600px;
+        box-sizing: border-box;
+    }
+    .toggle-button {
+        cursor: pointer;
+        padding: 10px 20px;
+        background-color: #ff6f91;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        margin-top: 20px;
+    }
+    .toggle-button:hover {
+        background-color: #ff3b7b;
+    }
+
+    /* Laptop view */
+    @media (min-width: 1024px) {
+        .video-container video {
+            height: 80vh;
+        }
+    }
+    /* Mobile view */
+    @media (max-width: 1024px) {
+        .video-container video {
+            height: 50vh;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <div class="card">
+        <h2>Video Downloader</h2>
+        <hr>
+        <div class="buttons">
+            <a href="/youtubedownloader/">YouTube Downloader</a>
+            <a href="/instadownloader/">Instagram Downloader</a>
+            <a href="/facebookdownloader/">Facebook Downloader</a>
+            <a href="/twitterdownloader/">Twitter Downloader</a>
+        </div>
+
+        <br>
+    </div>
+    <br>
+
+    {% for folder, videos in videos.items %}
+        {% if videos %}
+            <div class="card">
+                <h3>{{ folder|capfirst }} Videos</h3>
+                <hr><br>
+
+                <div class="video-container">
+                    <video controls muted>
+                        <source src="{{ videos.0.1 }}">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <button class="toggle-button" onclick="toggleVisibility('{{ folder }}-videos', this)">
+                    Show More Videos
+                </button>
+                <div id="{{ folder }}-videos" class="video-list" style="display: none;">
+                    {% for video_file, video_url in videos|slice:"1:" %}
+                        <div class="video-container">
+                            <video controls muted>
+                                <source src="{{ video_url }}">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    {% empty %}
+                        <p>No more videos available in {{ folder|capfirst }}.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+        <br>
+    {% endfor %}
+</div>
+
+<script>
+    function toggleVisibility(id, button) {
+        const element = document.getElementById(id);
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+            button.textContent = 'Show Less Videos';
+        } else {
+            element.style.display = 'none';
+            button.textContent = 'Show More Videos';
+        }
+    }
+</script>
+{% endblock %}

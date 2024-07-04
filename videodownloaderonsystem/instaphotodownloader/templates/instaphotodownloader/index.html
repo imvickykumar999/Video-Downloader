@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Instagram Photo Downloader</title>
+</head>
+<body>
+    <h1>Instagram Photo Downloader</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="url">Instagram Post URL:</label>
+        <input type="text" id="url" name="url" required>
+        <button type="submit">Download Photo</button>
+    </form>
+</body>
+</html>

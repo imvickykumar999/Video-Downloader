@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Select Video Format{% endblock %}
+
+{% block extra_styles %}
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+        background-color: #f4f4f4; /* match the background color */
+    }
+    .card {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 600px;
+        text-align: center;
+        border: 2px solid #ff6f91; /* add border color to match the theme */
+    }
+    h2 {
+        color: #ff6f91; /* match the heading color */
+    }
+    select, button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    button {
+        background-color: #ff6f91;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    button:hover {
+        background-color: #e55478;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <h2>Select Video Format</h2>
+        <form method="post" action="{% url 'twitterdownloader:download' %}">
+            {% csrf_token %}
+            <input type="hidden" name="url" value="{{ url }}">
+            <select name="format_id" required>
+                {% for format in formats %}
+                    <option value="{{ format.id }}">{{ format.description }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Download</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

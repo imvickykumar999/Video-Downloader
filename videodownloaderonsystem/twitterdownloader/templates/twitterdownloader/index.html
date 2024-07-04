@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Twitter Video Downloader{% endblock %}
+
+{% block extra_styles %}
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+        background-color: #f4f4f4; /* match the background color */
+    }
+    .card {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 600px;
+        text-align: center;
+        border: 2px solid #ff6f91; /* add border color to match the theme */
+    }
+    h2 {
+        color: #ff6f91; /* match the heading color */
+    }
+    .form-group {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    .form-group button {
+        padding: 10px 20px;
+        background-color: #ff6f91;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .form-group button:hover {
+        background-color: #e55478;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #ff6f91; /* match the label color */
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <h2>Twitter Video Downloader</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="url">Twitter Video URL:</label>
+                <input type="text" name="url" placeholder="Enter Twitter Video URL" required>
+                <button type="submit">List Formats</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
